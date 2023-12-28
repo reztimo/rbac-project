@@ -1,6 +1,8 @@
 package initializers
 
-/*func SyncDatabase() {
+import "maoelana/RBAC-project/models"
+
+func SyncDatabase() {
 	DB.AutoMigrate(
 		&models.User{},
 		&models.Role{},
@@ -9,4 +11,4 @@ package initializers
 		&models.RolePermission{},
 		&models.Event{},
 	)
-}*/
+}
