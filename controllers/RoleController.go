@@ -39,7 +39,6 @@ func CreateRole(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"role": role,
 	})
-
 }
 
 func GetAllRole(c *gin.Context) {

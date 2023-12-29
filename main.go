@@ -39,6 +39,11 @@ func main() {
 
 	// user
 	r.POST("/register", controllers.Register)
+	r.POST("/login", controllers.Login)
+	r.GET("/validate", controllers.Validate)
+	r.GET("/profile", controllers.GetAllProfile)
+	r.GET("/profile/:id", controllers.GetProfile)
+	r.GET("/logout", controllers.Logout)
 
 	r.Run()
 }
