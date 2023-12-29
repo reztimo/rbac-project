@@ -10,7 +10,7 @@ import (
 func init() {
 	initializers.LoadEnvVariabels()
 	initializers.ConnectToDB()
-	initializers.SyncDatabase()
+	//initializers.SyncDatabase()
 }
 
 func main() {
@@ -28,7 +28,14 @@ func main() {
 	r.GET("/permission", controllers.GetAllPermission)
 	r.GET("/permission/:id", controllers.GetPermission)
 	r.PUT("/permission/:id", controllers.UpdatePermission)
-	r.DELETE("/permission/:id", controllers.DeletePermission)
+	r.DELETE("/permission/:id", controllers.DeletePermission) //warning
+
+	// role
+	r.POST("/role", controllers.CreateRole)
+	r.GET("/role", controllers.GetAllRole)
+	r.GET("/role/:id", controllers.GetRole)
+	r.PUT("/role/:id", controllers.EditRole)
+	r.DELETE("/role/:id", controllers.RemoveRole) //warning
 
 	r.Run()
 }
