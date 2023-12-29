@@ -37,5 +37,8 @@ func main() {
 	r.PUT("/role/:id", controllers.EditRole)
 	r.DELETE("/role/:id", controllers.RemoveRole) //warning
 
+	// user
+	r.POST("/register", controllers.Register)
+
 	r.Run()
 }

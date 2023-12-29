@@ -104,7 +104,3 @@ func RemoveRole(c *gin.Context) {
 
 	c.Status(200)
 }
-
-func AssignRole(c *gin.Context) {
-
-}
