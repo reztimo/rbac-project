@@ -1,0 +1,55 @@
+package main
+
+func main() {
+	
+}
+
+/*
+	// Grup rute yang memerlukan otorisasi "Admin"
+	adminRoutes := r.Group("/admin").Use(middlewares.RequireAuth, middlewares.AuthorizationMiddleware("Admin"))
+	{
+		// Endpoint-event
+		adminRoutes.POST("/event", controllers.CreateResource)
+		adminRoutes.GET("/event", controllers.GetAllResource)
+		adminRoutes.GET("/event/:id", controllers.GetResource)
+		adminRoutes.PUT("/event/:id", controllers.UpdateResource)
+		adminRoutes.DELETE("/event/:id", controllers.DeleteResource)
+
+		// Endpoint-permission
+		adminRoutes.POST("/permission", controllers.CreatePermission)
+		adminRoutes.GET("/permission", controllers.GetAllPermission)
+		adminRoutes.GET("/permission/:id", controllers.GetPermission)
+		adminRoutes.PUT("/permission/:id", controllers.UpdatePermission)
+		adminRoutes.DELETE("/permission/:id", controllers.DeletePermission)
+
+		// Endpoint-role
+		adminRoutes.POST("/role", controllers.CreateRole)
+		adminRoutes.GET("/role", controllers.GetAllRole)
+		adminRoutes.GET("/role/:id", controllers.GetRole)
+		adminRoutes.PUT("/role/:id", controllers.EditRole)
+		adminRoutes.DELETE("/role/:id", controllers.RemoveRole)
+
+		adminRoutes.GET("/profile", controllers.GetAllProfile)
+		adminRoutes.GET("/profile/:id", controllers.GetProfile)
+	}
+
+	// Grup rute yang memerlukan otorisasi "User"
+	userRoutes := r.Group("/user").Use(middlewares.RequireAuth, middlewares.AuthorizationMiddleware("User"))
+	{
+		// Endpoint-event
+		userRoutes.GET("/event", controllers.GetAllResource)
+		userRoutes.GET("/event/:id", controllers.GetResource)
+
+		// Endpoint-profile
+		userRoutes.GET("/profile", controllers.GetAllProfile)
+		userRoutes.GET("/profile/:id", controllers.GetProfile)
+	}
+
+	// Endpoint-user
+	r.POST("/register", controllers.Register)
+	r.POST("/login", controllers.Login)
+	r.GET("/validate", middlewares.RequireAuth, controllers.Validate)
+	r.GET("/logout", middlewares.RequireAuth, controllers.Logout)
+
+	r.Run()
+*/
