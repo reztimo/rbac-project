@@ -1,4 +1,4 @@
-host: localhost:5000
+host: reztimo.github.io/rbac-project
 info:
   contact: {}
   description: A RBAC service API in Golang using Gin framework
