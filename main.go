@@ -5,7 +5,11 @@ import (
 	"maoelana/RBAC-project/initializers"
 	"maoelana/RBAC-project/middlewares"
 
+	_ "maoelana/RBAC-project/docs"
+
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func init() {
@@ -14,8 +18,16 @@ func init() {
 	//initializers.SyncDatabase()
 }
 
+// @title RBAC EVENT API
+// @version 1.0
+// @description A RBAC service API in Golang using Gin framework
+
+// @host localhost:5000
 func main() {
 	r := gin.Default()
+
+	url := ginSwagger.URL("http://localhost:5000/docs/doc.json")
+	r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 
 	// Endpoint-event
 	r.POST("/event", middlewares.RequireAuth, middlewares.AuthorizationMiddleware("Admin"), controllers.CreateResource)

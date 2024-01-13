@@ -12,6 +12,16 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// Register
+// @Summary Register a new user
+// @Description Register a new user with the provided credentials and roles.
+// @Tags users
+// @Accept json
+// @Produce json
+// @Param username body string true "Username for registration"
+// @Param password body string true "Password for registration"
+// @Param roles body []string true "Roles for the user (e.g., ['admin', 'user'])"
+// @Router /register [post]
 func Register(c *gin.Context) {
 	var userData struct {
 		Username string
@@ -70,6 +80,15 @@ func Register(c *gin.Context) {
 	})
 }
 
+// Login
+// @Summary Login to the application
+// @Description Login to the application with the provided username and password.
+// @Tags authentication
+// @Accept json
+// @Produce json
+// @Param username body string true "Username for login"
+// @Param password body string true "Password for login"
+// @Router /login [post]
 func Login(c *gin.Context) {
 	var userData struct {
 		Username string
@@ -80,6 +99,7 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Failed to read userData",
 		})
+		return
 	}
 
 	var user models.User
@@ -89,7 +109,6 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Invalid email or password",
 		})
-
 		return
 	}
 
@@ -104,16 +123,24 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Failed to create token",
 		})
+		return
 	}
 
 	c.SetSameSite(http.SameSiteLaxMode)
 	c.SetCookie("Authorization", tokenString, 3600*24*30, "", "", false, true)
 
 	c.JSON(http.StatusOK, gin.H{
-		//"token": tokenString,
+		"message": "Login successful",
 	})
 }
 
+// Validate
+// @Summary Validate user authentication token
+// @Description Validate the user authentication token and return user information.
+// @Tags authentication
+// @Security ApiKeyAuth
+// @Produce json
+// @Router /validate [get]
 func Validate(c *gin.Context) {
 	user, _ := c.Get("user")
 
@@ -122,6 +149,12 @@ func Validate(c *gin.Context) {
 	})
 }
 
+// GetAllProfile
+// @Summary Get all user profiles with associated roles and permissions
+// @Description Retrieve a list of all user profiles, including their associated roles and permissions.
+// @Tags profiles
+// @Produce json
+// @Router /profile [get]
 func GetAllProfile(c *gin.Context) {
 	var users []models.User
 	initializers.DB.Preload("Roles").Find(&users)
@@ -137,6 +170,13 @@ func GetAllProfile(c *gin.Context) {
 	})
 }
 
+// GetProfile
+// @Summary Get user profile by ID
+// @Description Retrieve user profile by providing the user's ID.
+// @Tags profiles
+// @Produce json
+// @Param id path int true "User ID"
+// @Router /profile/{id} [get]
 func GetProfile(c *gin.Context) {
 	id := c.Param("id")
 
@@ -152,6 +192,12 @@ func GetProfile(c *gin.Context) {
 	})
 }
 
+// Logout
+// @Summary Logout and clear user's authentication token
+// @Description Logout the user by clearing the authentication token cookie.
+// @Tags authentication
+// @Produce json
+// @Router /logout [get]
 func Logout(c *gin.Context) {
 	c.SetCookie("Authorization", "", -1, "", "", false, true)
 

@@ -7,6 +7,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// CreateRole
+// @Summary Create a new role
+// @Description Create a new role by providing its name and permissions.
+// @Tags roles
+// @Produce json
+// @Param name formData string true "Name of the role"
+// @Param permissions formData array true "Array of permission names"
+// @Success 200 "Role created successfully"
+// @Router /role [post]
 func CreateRole(c *gin.Context) {
 	var roleData struct {
 		Name       string
@@ -41,6 +50,13 @@ func CreateRole(c *gin.Context) {
 	})
 }
 
+// GetAllRole
+// @Summary Get all roles with associated permissions
+// @Description Get a list of all roles along with their associated permissions.
+// @Tags roles
+// @Produce json
+// @Success 200 "Roles retrieved successfully"
+// @Router /role [get]
 func GetAllRole(c *gin.Context) {
 	var roles []models.Role
 	initializers.DB.Preload("Permission").Find(&roles)
@@ -50,6 +66,14 @@ func GetAllRole(c *gin.Context) {
 	})
 }
 
+// GetRole
+// @Summary Get a specific role by ID
+// @Description Get details of a specific role by providing its ID.
+// @Tags roles
+// @Produce json
+// @Param id path string true "Role ID"
+// @Success 200 "Role retrieved successfully"
+// @Router /role/{id} [get]
 func GetRole(c *gin.Context) {
 	id := c.Param("id")
 
@@ -61,6 +85,16 @@ func GetRole(c *gin.Context) {
 	})
 }
 
+// EditRole
+// @Summary Edit a specific role by ID
+// @Description Edit details of a specific role by providing its ID and new data.
+// @Tags roles
+// @Produce json
+// @Param id path string true "Role ID"
+// @Param name body string true "name for role"
+// @Param permissions body []string true "permission for user"
+// @Success 200 "Role edited successfully"
+// @Router /role/{id} [put]
 func EditRole(c *gin.Context) {
 	id := c.Param("id")
 
@@ -96,6 +130,14 @@ func EditRole(c *gin.Context) {
 	})
 }
 
+// RemoveRole
+// @Summary Remove a specific role by ID
+// @Description Remove a specific role by providing its ID.
+// @Tags roles
+// @Produce json
+// @Param id path string true "Role ID"
+// @Success 200 "Role removed successfully"
+// @Router /role/{id} [delete]
 func RemoveRole(c *gin.Context) {
 	id := c.Param("id")
 
