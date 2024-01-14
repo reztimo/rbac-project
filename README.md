@@ -61,66 +61,77 @@ This project is an implementation of Role-Based Access Control (RBAC) using Gola
         permissionModel.go
         roleModel.go
         userModel.go
+```
 
-nstallation
+## Installation
 Clone the repository:
 
-bash
-Copy code
+```plaintext
 git clone https://github.com/reztimo/rbac-project.git
 cd rbac-project
-Install dependencies:
+```
+### Install dependencies:
 
-bash
-Copy code
+```plaintext
 go mod download
-Configuration
+```
+
+## Configuration
 Copy the .env.example file to .env and configure the necessary environment variables.
-Database Setup
+
+## Database Setup
+
 Run the database initialization:
 
-bash
-Copy code
+```plaintext
 go run initializers/database.go
-API Endpoints
-Event Endpoints
-POST /event: Create a new resource (Admin access required).
-GET /event: Get all resources (Authenticated access required).
-GET /event/:id: Get a specific resource by ID (Authenticated access required).
-PUT /event/:id: Update a resource by ID (Admin access required).
-DELETE /event/:id: Delete a resource by ID (Admin access required).
-Permission Endpoints
-POST /permission: Create a new permission (Admin access required).
-GET /permission: Get all permissions (Admin access required).
-GET /permission/:id: Get a specific permission by ID (Admin access required).
-PUT /permission/:id: Update a permission by ID (Admin access required).
-DELETE /permission/:id: Delete a permission by ID (Admin access required).
-Role Endpoints
-POST /role: Create a new role (Admin access required).
-GET /role: Get all roles (Admin access required).
-GET /role/:id: Get a specific role by ID (Admin access required).
-PUT /role/:id: Update a role by ID (Admin access required).
-DELETE /role/:id: Delete a role by ID (Admin access required).
-User Endpoints
-POST /register: Register a new user.
-POST /login: User login.
-GET /validate: Validate user credentials (Authenticated access required).
-GET /profile: Get all user profiles (Authenticated access required).
-GET /profile/:id: Get a specific user profile by ID (Authenticated access required).
-GET /logout: Logout (Authenticated access required).
-Usage
+```
+
+## API Endpoints
+### Event Endpoints
+- POST /event: Create a new resource (Admin access required).
+- GET /event: Get all resources (Authenticated access required).
+- GET /event/:id: Get a specific resource by ID (Authenticated access required).
+- PUT /event/:id: Update a resource by ID (Admin access required).
+- DELETE /event/:id: Delete a resource by ID (Admin access required).
+
+### Permission Endpoints
+- POST /permission: Create a new permission (Admin access required).
+- GET /permission: Get all permissions (Admin access required).
+- GET /permission/:id: Get a specific permission by ID (Admin access required).
+- PUT /permission/:id: Update a permission by ID (Admin access required).
+- DELETE /permission/:id: Delete a permission by ID (Admin access required).
+
+### Role Endpoints
+- POST /role: Create a new role (Admin access required).
+- GET /role: Get all roles (Admin access required).
+- GET /role/:id: Get a specific role by ID (Admin access required).
+- PUT /role/:id: Update a role by ID (Admin access required).
+- DELETE /role/:id: Delete a role by ID (Admin access required).
+
+### User Endpoints
+- POST /register: Register a new user.
+- POST /login: User login.
+- GET /validate: Validate user credentials (Authenticated access required).
+- GET /profile: Get all user profiles (Authenticated access required).
+- GET /profile/:id: Get a specific user profile by ID (Authenticated access required).
+- GET /logout: Logout (Authenticated access required).
+
+## Usage
 Run the application:
 
-bash
-Copy code
+```plaintext
 go run main.go
-Access the API at http://localhost:5000.
-
-Swagger Documentation
-Swagger documentation is available at http://localhost:5000/docs. Explore and test the API endpoints interactively.
-
-javascript
-Copy code
-
-Make sure to replace placeholders such as `<URL>` and `<PORT>` with your actual values
 ```
+
+if you using CompileDaemon:
+```plaintext
+CompileDaemon -command="./RBAC-project"
+```
+
+Access the API at [http://localhost:5000](http://localhost:5000).
+
+## Swagger Documentation
+Swagger documentation is available at [reztimo.github.io/rbac-project/](https://reztimo.github.io/rbac-project/). Explore and test the API endpoints interactively.
+
+Make sure to replace placeholders such as `<URL>` and `<PORT>` with your actual values.
